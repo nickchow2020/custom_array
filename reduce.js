@@ -1,4 +1,4 @@
-const arr = Array.from({length:5},(_,i)=> i + 1)
+let arr = Array.from({length:5},(_,i)=> i + 1)
 
 
 // first approach 
@@ -40,17 +40,25 @@ const myCustomReduce = function(cb,init){
 
 Array.prototype.myReduce = myCustomReduce
 
-// text 1 output 15
+// test 1 output 15
 console.log(arr.myReduce((acc,cur) => acc + cur))
 
-// text 2 output 25
+// test 2 output 25
 console.log(arr.myReduce((acc,cur) => acc + cur, 10))
 
-// text 3 output 12345 (because concatenation)
+// test 3 output 12345 (because concatenation)
 console.log(arr.myReduce((acc,cur) => acc + cur, " "))
 
-// text 2 output [2,4,6,8,10]
+// test 4 output [2,4,6,8,10]
 console.log(arr.myReduce((acc,cur,i) => {
   acc[i] = cur * 2
   return acc
 },[]))
+
+
+// test 5 output 2468(because concatenation)
+arr = [[1,2],[3,4],[5,6],[7,8]]
+console.log(arr.myReduce((acc,cur) => {
+  acc += cur[1]
+  return acc
+}, " "))
